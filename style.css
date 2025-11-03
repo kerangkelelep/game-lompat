@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+/* Papan permainan utama */
+.game-board {
+    width: 600px;
+    height: 300px;
+    border: 3px solid #333;
+    margin: 20px auto;
+    position: relative; /* Penting untuk memposisikan pemain/rintangan */
+    background-color: white;
+    overflow: hidden; /* Rintangan akan 'hilang' saat keluar papan */
+}
+
+/* Karakter kita */
+#player {
+    width: 50px;
+    height: 50px;
+    background-color: #3b82f6; /* Warna biru */
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+
+/* Rintangan */
+#obstacle {
+    width: 30px;
+    height: 70px;
+    background-color: #ef4444; /* Warna merah */
+    position: absolute;
+    bottom: 0;
+    left: 600px; /* Mulai dari luar layar (kanan) */
+    
+    /* Animasi pergerakan rintangan */
+    animation: slide 2s linear infinite;
+}
+
+/* Ini adalah kelas 'sementara' yang ditambahkan oleh JavaScript */
+.jump-animation {
+    animation: jump 0.5s linear; /* 0.5 detik untuk 1x lompat */
+}
+
+
+/* === ANIMASI (KEYFRAMES) === */
+
+/* Animasi rintangan bergerak dari kanan ke kiri */
+@keyframes slide {
+    from {
+        left: 600px; /* Mulai dari kanan */
+    }
+    to {
+        left: -30px; /* Selesai di kiri (hilang) */
+    }
+}
+
+/* Animasi pemain melompat (naik lalu turun) */
+@keyframes jump-animation {
+    0% {
+        bottom: 0; /* Mulai di tanah */
+    }
+    50% {
+        bottom: 100px; /* Puncak lompatan */
+    }
+    100% {
+        bottom: 0; /* Kembali ke tanah */
+    }
+}
