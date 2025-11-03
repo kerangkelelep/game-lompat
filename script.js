@@ -5,20 +5,21 @@ const obstacle = document.getElementById("obstacle");
 let gameRunning = true; // Status untuk menghentikan game
 
 // 1. FUNGSI UNTUK MELOMPAT
+// GANTI FUNGSI JUMP YANG LAMA DENGAN YANG INI:
 function jump(event) {
-    // Hanya lompat jika menekan spasi (kode 32)
-    // dan jika game masih berjalan
-    if (event.keyCode !== 32 || !gameRunning) {
+    // 1. PERUBAHAN DI SINI:
+    // Kita cek 'Space' (spasi) menggunakan 'event.code' yang lebih modern
+    // bukan lagi 'event.keyCode'
+    if (event.code !== 'Space' || !gameRunning) {
         return;
     }
 
-    // Cek apakah pemain sedang melompat
-    // Jika tidak ada kelas 'jump-animation', maka tambahkan
+    // 2. Mencegah 'scroll' (jika halaman panjang, spasi akan scroll ke bawah)
+    event.preventDefault(); 
+
     if (!player.classList.contains("jump-animation")) {
         player.classList.add("jump-animation");
 
-        // Hapus kelas setelah 500ms (sesuai durasi animasi CSS)
-        // agar pemain bisa melompat lagi
         setTimeout(() => {
             player.classList.remove("jump-animation");
         }, 500); 
